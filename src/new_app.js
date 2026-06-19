@@ -20,21 +20,21 @@ App = {
   },
 
   loadAccount: async () => {
-    // Set the current blockchain account
-    App.account = web3.eth.accounts[0]
-  web3.eth.getCoinbase(function(err, org_address) {
-  if (err === null) {
-  web3.eth.getBalance(App.account, function(err, balance) {
-    if (err === null) {
-        App.balance = web3.fromWei(balance, "ether")
-    }
-  });
-  }
-  });
-
-
-
-
+    return new Promise((resolve, reject) => {
+      web3.eth.getAccounts((err, accounts) => {
+        if (err || !accounts || !accounts.length) {
+          console.error('Failed to get accounts', err)
+          reject(err || new Error('No accounts'))
+          return
+        }
+        App.account = accounts[0]
+        web3.eth.defaultAccount = App.account
+        web3.eth.getBalance(App.account, (err, balance) => {
+          if (!err) App.balance = web3.fromWei(balance, "ether")
+          resolve()
+        })
+      })
+    })
   },
 
 
@@ -186,7 +186,7 @@ App = {
     var address = App.account
     var balance = App.balance
     var _str = balance + " ETH"
-		await App.charity.createCharity(charity_name,description,bankAccount,bankName,address,_str)
+		await App.charity.createCharity(charity_name,description,bankAccount,bankName,address,_str, { gas: 6721975 })
 		window.location.reload()
 	},
 
@@ -201,7 +201,8 @@ App = {
     web3.eth.sendTransaction({
       "from":address_of_organisation,
       "to": address_of_charity,
-      "value": amountToSend
+      "value": amountToSend,
+      "gas": 6721975
     },function find_hash(error, result){
        if(error){
          console.log( "Transaction error" ,error);
@@ -214,7 +215,7 @@ App = {
     });
 
 
-    await App.charity.createTransaction(address_of_charity,address_of_organisation,amountToSend)
+    await App.charity.createTransaction(address_of_charity,address_of_organisation,amountToSend, { gas: 6721975 })
     window.location.reload()
 
   },
@@ -228,13 +229,13 @@ App = {
     var balance = App.balance
     var _strNew = balance + " ETH"
     //window.alert("before the create organisation function")
-    await App.charity.createOrganisation(name,bankAccount,bankName,newAddress,_strNew)
+    await App.charity.createOrganisation(name,bankAccount,bankName,newAddress,_strNew, { gas: 6721975 })
     window.location.reload()
   },
 
   blockchain_function: async () => {
 
-    await App.charity.blockchain_function()
+    await App.charity.blockchain_function({ gas: 6721975 })
     window.location.reload()
   }
 

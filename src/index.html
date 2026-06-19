@@ -67,7 +67,7 @@
 						<br>
 						<br>
 							<p >Enter the charity details...</p>
-					  	<form onSubmit = "App.createCharity();">
+					  	<form onSubmit = "App.createCharity(); return false;">
 								<br>
 						<input id = "charity_name" type = "text" class = "form-control" placeholder = "Add charity name..." required>
 						<br>
@@ -99,7 +99,7 @@
 					<br>
 					<br>
 					    <p>Enter the organisation details...</p>
-		          <form onSubmit = "App.createOrganisation();">
+		          <form onSubmit = "App.createOrganisation(); return false;">
 		            <br>
 		        <input id = "organisation_name" type = "text" class = "form-control" placeholder = "Add organisation name..." required>
 		        <br>
@@ -127,7 +127,7 @@
 						<br><br><br><br>
 
 						<p>Enter the transaction details...</p>
-						<form onSubmit = "App.createTransaction();">
+						<form onSubmit = "App.createTransaction(); return false;">
 						  <br>
 						<input id = "add_of_charity" type = "text" class = "form-control" placeholder = "Address of charity..." required>
 						<br>
@@ -151,7 +151,7 @@
 
 						<br><br><br><br>
 						<p>the blockchain details....</p>
-						<form onSubmit = "App.blockchain_function();">
+						<form onSubmit = "App.blockchain_function(); return false;">
 						  <br>
 						<!--<input id = "mine" type = "text" class = "form-control" placeholder = "blockchain mine..." required> -->
 						<span>TO MINE A BLOCK CLICK : <input type="submit" name="mine"></span>
