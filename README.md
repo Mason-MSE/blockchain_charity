@@ -49,15 +49,15 @@
 
 ### 2026-06-20 — Bug fixes & dependency upgrades
 
-- **Web3 版本修复** — CDN 从 web3@1.10.0 改为 web3@0.20.6（兼容 truffle-contract@3.0.6 的 `toBigNumber` API）
-- **脚本加载顺序修复** — web3.js 移到 truffle-contract.js 之前加载，修复 `Web3 is not a constructor`
-- **`ethereum.enable()` 弃用修复** — 改为 `ethereum.request({ method: 'eth_requestAccounts' })`
-- **恢复缺失的合约文件** — 从 git 历史恢复了 `contracts/charity.sol`、`build/contracts/charity.json`、`migrations/` 目录
-- **修复网络不匹配** — `loadContract` 改用 `.at(address)` 替代 `.deployed()`，绕过网络 ID 校验
-- **直连 Ganache** — 前端 Web3 Provider 改为直连 `http://127.0.0.1:7545`，不再依赖 MetaMask 网络配置
-- **修复 `loadAccount`** — 改用 `web3.eth.getAccounts()` 异步获取账户，设置 `web3.eth.defaultAccount`
-- **修复 Gas 不足** — 所有合约调用加上 `{ gas: 6721975 }`
-- **修复表单默认提交** — 所有 `onSubmit` 增加 `return false;` 阻止页面提前刷新
-- **Truffle 升级** — `5.0.2` → `5.11.5`
-- **Solidity 升级** — `0.5.0` → `0.8.19`，更新合约语法（`constructor()` 移除 `public`，`if` 守卫 → `require`）
-- **远程仓库迁移** — 更新 git remote 至 `https://github.com/Mason-MSE/blockchain_charity.git`
+- **Web3 version fix** — Changed CDN from web3@1.10.0 to web3@0.20.6 (compatible with truffle-contract@3.0.6's `toBigNumber` API)
+- **Script load order fix** — Moved web3.js before truffle-contract.js to resolve `Web3 is not a constructor`
+- **`ethereum.enable()` deprecation** — Replaced with `ethereum.request({ method: 'eth_requestAccounts' })`
+- **Restored missing contract files** — Recovered `contracts/charity.sol`, `build/contracts/charity.json`, and `migrations/` from git history
+- **Network mismatch fix** — `loadContract` now uses `.at(address)` instead of `.deployed()` to bypass network ID validation
+- **Direct Ganache connection** — Frontend Web3 Provider connects directly to `http://127.0.0.1:7545`, no longer depends on MetaMask network config
+- **Fixed `loadAccount`** — Uses `web3.eth.getAccounts()` asynchronously and sets `web3.eth.defaultAccount`
+- **Out of gas fix** — Added `{ gas: 6721975 }` to all contract calls
+- **Form default submission fix** — Added `return false;` to all `onSubmit` handlers to prevent premature page reload
+- **Truffle upgrade** — `5.0.2` → `5.11.5`
+- **Solidity upgrade** — `0.5.0` → `0.8.19`, updated contract syntax (`constructor()` without `public`, `if` guard → `require`)
+- **Remote repository migration** — Updated git remote to `https://github.com/Mason-MSE/blockchain_charity.git`
