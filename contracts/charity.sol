@@ -1,4 +1,4 @@
-pragma solidity ^ 0.5.0;
+pragma solidity ^0.8.0;
 contract charity {
 
   uint public charity_count = 0;
@@ -33,7 +33,7 @@ contract charity {
 
   }
 
-  constructor() public {
+  constructor() {
 
       createCharity("anand_charity", "welcome to anand's charity, this is a default charity as I created this web page","bankacc","bankname","0xCA35b7d915458EF540aDe6068dFe2F44E8fa733c","0000");
 
